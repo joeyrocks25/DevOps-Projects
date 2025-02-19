@@ -7,6 +7,15 @@ pipeline {
     }
 
     stages {
+        stage('Install AWS CLI') {
+            steps {
+                bat '''
+                    echo Installing AWS CLI...
+                    choco install awscli -y
+                    aws --version
+                '''
+            }
+        }
         stage('S3 Upload') {
             steps {
                 bat 'aws s3 cp build s3://$S3_BUCKET/ --recursive'
