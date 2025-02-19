@@ -4,9 +4,18 @@ pipeline {
         AWS_ACCESS_KEY_ID = credentials('AWS_ACCESS_KEY_ID')
         AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
         S3_BUCKET = 'kp-test-bucket-1'
+        GITHUB_CREDENTIALS = credentials('GITHUB_CREDENTIALS')
     }
 
     stages {
+        stage('Checkout') {
+            steps {
+                git(
+                    url: 'https://github.com/joeyrocks25/DevOps-Projects.git',
+                    credentialsId: 'GITHUB_CREDENTIALS'
+                )
+            }
+        }
         stage('S3 Upload') {
             steps {
                 bat 'dir'
