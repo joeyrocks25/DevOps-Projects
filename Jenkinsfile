@@ -10,8 +10,8 @@ pipeline {
         stage('S3 Upload') {
             steps {
                 bat 'dir'
-                bat 'aws s3 cp Week1/Solution/index.html s3://$S3_BUCKET/Week1/index.html'
-                bat 'aws s3 cp Week1/Solution/style.css s3://$S3_BUCKET/Week1/style.css'
+                bat 'aws s3 cp Week1/index.html s3://$S3_BUCKET/Week1/index.html'
+                bat 'aws s3 cp Week1/style.css s3://$S3_BUCKET/Week1/style.css'
             }
         }
     }
