@@ -9,17 +9,16 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'npm install'
-                sh 'npm run build'
-                sh 'ls'
-                sh 'cd build'
-                sh 'ls'
+                bat 'npm install'
+                bat 'npm run build'
+                bat 'dir'
+                bat 'cd build && dir'
             }
         }
         stage('S3 Upload') {
             steps {
-                sh 'ls -la build'
-                sh 'aws s3 cp build s3://$S3_BUCKET/ --recursive'
+                bat 'dir build'
+                bat 'aws s3 cp build s3://$S3_BUCKET/ --recursive'
             }
         }
     }
