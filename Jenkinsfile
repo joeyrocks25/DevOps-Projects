@@ -7,17 +7,8 @@ pipeline {
     }
 
     stages {
-        stage('Build') {
-            steps {
-                bat 'npm install'
-                bat 'npm run build'
-                bat 'dir'
-                bat 'cd build && dir'
-            }
-        }
         stage('S3 Upload') {
             steps {
-                bat 'dir build'
                 bat 'aws s3 cp build s3://$S3_BUCKET/ --recursive'
             }
         }
